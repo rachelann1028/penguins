@@ -20,5 +20,5 @@ with st.expander("Data preparation"):
 
 with st.sidebar:
     st.header("Input Variables")
-    island = st.selectbox('Island',('Biscoe','Dream','Torgersen'))
+    island = st.selectbox('Island',('Select island','Biscoe','Dream','Torgersen'))
     
