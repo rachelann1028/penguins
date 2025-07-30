@@ -47,19 +47,17 @@ with st.expander("Input Data"):
     pass
 
 with st.expander("Data preparation"):
-    # Sample input dataframe (replace with actual user input logic)
-input_df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv")
-input_df = input_df.dropna()
+    pass
 
 with st.expander("Input data"):
     st.write("**Input data**")
-    st.dataframe(input_df)
+    st.dataframe(df)
 
     # Extract target column separately
-    y_raw = input_df['species']
+    y_raw = df['species']
 
     # Remove target column from input features
-    input_penguins = input_df.drop('species', axis=1)
+    input_penguins = df.drop('species', axis=1)
 
     st.write("**Combined data**")
     st.dataframe(input_penguins)
