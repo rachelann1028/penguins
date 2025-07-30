@@ -49,43 +49,7 @@ with st.expander("Input Data"):
 with st.expander("Data preparation"):
     pass
 
-with st.expander("Input data"):
-    st.write("**Input data**")
-    st.dataframe(df)
 
-    # Extract target column separately
-    y_raw = df['species']
-
-    # Remove target column from input features
-    input_penguins = df.drop('species', axis=1)
-
-    st.write("**Combined data**")
-    st.dataframe(input_penguins)
-
-    # One-hot encoding for features
-    encode = ['island', 'sex']
-    df_penguins = pd.get_dummies(input_penguins, columns=encode, prefix=encode)
-
-    # Prepare input row and feature matrix
-    X = df_penguins[1:]
-    input_row = df_penguins[:1]
-
-    # Encode target labels
-    target_mapper = {
-    'Adelie': 0,
-    'Chinstrap': 1,
-    'Gentoo': 2
-    }
-    def target_encode(val):
-        return target_mapper[val]
-
-    y = y_raw.apply(target_encode)
-
-    st.write("**Encoded Features**")
-    st.dataframe(df_penguins)
-
-    st.write("**Encoded Labels**")
-    st.write(y.head())
 
 with st.sidebar:
     st.header("Input Variables")
@@ -95,3 +59,34 @@ with st.sidebar:
     flipper_length_mm = st.slider('Flipper length (mm)',172.0,231.0,201.0)
     body_mass_g = st.slider('Body mass (g)',2700.0,6300.0,4207.0)
     gender = st.selectbox('Gender',('select gender','male','female'))
+
+data = {'island':island,
+          'bill_length_mm':bill_length_mm,
+          'bill_depth_mm': bill_depth_mm,
+          'flipper_length_mm': flipper_length_mm,
+          'body_mass_g': body_mass_g,
+          'sex': sex  
+  }
+  input_df = pd.DataFrame(data, index=[0])
+  input_penguins = pd.concat([input_df, X_raw], axis=0)
+
+with st.expander("Input data"):
+  st.write("**Input data**")
+  input_df
+  st.write("**Combined data**")
+  input_penguins
+# One hot encoding for X
+encode = ['island','sex']
+df_penguins = pd.get_dummies(input_penguins, prefix=encode)
+X = df_penguins[1:]
+input_row = df_penguins[:1]
+# One hot encoding for y
+target_mapper = {
+  'Adelie': 0,
+  'Chinstrap': 1,
+  'Gentoo': 2
+}
+def target_encode(val):
+  return target_mapper[val]
+
+y = y_raw.apply(target_encode)
