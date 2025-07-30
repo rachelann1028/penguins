@@ -7,7 +7,8 @@ st.title("Penguine species prediction")
 st.info("This is end-to-end Machine Learning app")
 
 with st.expander("Data"):
-    pass
+    st.write("**Raw Data**")
+    df = pd.read_csv("https://teams.microsoft.com/l/message/19:meeting_MmI3OWQ0NjEtNWYzYS00MDZlLThjNjctOWQyNDIyOWQyOTM2@thread.v2/1753884536546?context=%7B%22contextType%22%3A%22chat%22%7D")
 
 with st.expander("Data Visualization"):
     pass
