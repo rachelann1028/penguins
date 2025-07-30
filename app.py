@@ -37,7 +37,7 @@ with st.expander("Data Visualization"):
 
     # Select boxplot variables
     x_axis = st.selectbox("species", df.select_dtypes(include='object').columns)
-    y_axis = st.selectbox("bill_length_mm", df.select_dtypes(include='number').columns)
+    y_axis = st.selectbox("body_mass_g", df.select_dtypes(include='number').columns)
 
     # Draw the boxplot
     fig, ax = plt.subplots()
