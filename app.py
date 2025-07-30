@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 
 st.title("Penguine species prediction")
@@ -29,6 +31,18 @@ with st.expander("Data"):
 
 with st.expander("Data Visualization"):
     st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color = 'species')
+
+    # Streamlit UI
+    st.title("Boxplot Example")
+
+    # Select boxplot variables
+    x_axis = st.selectbox("species", df.select_dtypes(include='object').columns)
+    y_axis = st.selectbox("bill_length_mm", df.select_dtypes(include='number').columns)
+
+    # Draw the boxplot
+    fig, ax = plt.subplots()
+    sns.boxplot(data=df, x=x_axis, y=y_axis, ax=ax)
+    st.pyplot(fig)
 
 with st.expander("Input Data"):
     pass
