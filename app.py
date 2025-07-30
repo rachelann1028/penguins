@@ -8,7 +8,7 @@ st.info("This is end-to-end Machine Learning app")
 
 with st.expander("Data"):
     st.write("**Raw Data**")
-    df = pd.read_csv("https://teams.microsoft.com/l/message/19:meeting_MmI3OWQ0NjEtNWYzYS00MDZlLThjNjctOWQyNDIyOWQyOTM2@thread.v2/1753884536546?context=%7B%22contextType%22%3A%22chat%22%7D")
+    df = pd.read_csv("https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv")
 
 with st.expander("Data Visualization"):
     pass
