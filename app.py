@@ -23,7 +23,7 @@ with st.expander("Data"):
     des = df.describe()
     des
     st.write("Data info")
-    info = df.info()
+    info = df.info
     info
 
 
