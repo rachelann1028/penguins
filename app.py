@@ -22,6 +22,7 @@ with st.expander("Data"):
     st.write("Descriptive Statistics")
     des = df.describe()
     des
+    st.write("Data info")
     info = df.info()
     info
 
