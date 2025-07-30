@@ -44,6 +44,9 @@ with st.expander("Data Visualization"):
     st.pyplot(fig)
 
 with st.expander("Input Data"):
+    pass
+
+with st.expander("Data preparation"):
     # Sample input dataframe (replace with actual user input logic)
 input_df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv")
 input_df = input_df.dropna()
@@ -61,33 +64,30 @@ with st.expander("Input data"):
     st.write("**Combined data**")
     st.dataframe(input_penguins)
 
-# One-hot encoding for features
-encode = ['island', 'sex']
-df_penguins = pd.get_dummies(input_penguins, columns=encode, prefix=encode)
+    # One-hot encoding for features
+    encode = ['island', 'sex']
+    df_penguins = pd.get_dummies(input_penguins, columns=encode, prefix=encode)
 
-# Prepare input row and feature matrix
-X = df_penguins[1:]
-input_row = df_penguins[:1]
+    # Prepare input row and feature matrix
+    X = df_penguins[1:]
+    input_row = df_penguins[:1]
 
-# Encode target labels
-target_mapper = {
+    # Encode target labels
+    target_mapper = {
     'Adelie': 0,
     'Chinstrap': 1,
     'Gentoo': 2
-}
-def target_encode(val):
-    return target_mapper[val]
+    }
+    def target_encode(val):
+        return target_mapper[val]
 
-y = y_raw.apply(target_encode)
+    y = y_raw.apply(target_encode)
 
-st.write("**Encoded Features**")
-st.dataframe(df_penguins)
+    st.write("**Encoded Features**")
+    st.dataframe(df_penguins)
 
-st.write("**Encoded Labels**")
-st.write(y.head())
-
-with st.expander("Data preparation"):
-    pass
+    st.write("**Encoded Labels**")
+    st.write(y.head())
 
 with st.sidebar:
     st.header("Input Variables")
